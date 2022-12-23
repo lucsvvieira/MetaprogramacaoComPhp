@@ -6,9 +6,9 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 $reflectionClass = new ReflectionClass(ClasseExemplo::class);
 
-$modifiers = $reflectionClass->getModifiers();
-$modifierNames = Reflection::getModifierNames($modifiers);
+$reflectionMethod = $reflectionClass->getMethod('metodoPublico');
 
-$objetoClasseExemplo = $reflectionClass->newInstance();
+$objetoClasseExemplo = $reflectionClass->newInstanceWithoutConstructor();
 
-echo json_encode($objetoClasseExemplo);
+$reflectionMethod->invokeArgs($objetoClasseExemplo, ['Mensagem qualquer ', 7]);
+
