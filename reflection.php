@@ -6,8 +6,12 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 $reflectionClass = new ReflectionClass(ClasseExemplo::class);
 
-$reflectionMethod = $reflectionClass->getMethod('metodoPublico');
-$parameters = array_filter(
+var_dump($reflectionClass->getProperties());
+
+// ----- Métodos ---------
+/*
+ $reflectionMethod = $reflectionClass->getMethod('metodoPublico');
+ $parameters = array_filter(
     $reflectionMethod->getParameters(),
     fn (ReflectionParameter $parameter) => !$parameter->isOptional()
 );
@@ -24,4 +28,4 @@ foreach ($parameters as $parameter) {
 $objetoClasseExemplo = $reflectionClass->newInstanceWithoutConstructor();
 
 // $reflectionMethod->invokeArgs($objetoClasseExemplo, ['Mensagem qualquer ', 7]);
-
+*/
