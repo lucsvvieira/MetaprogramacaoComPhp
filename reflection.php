@@ -7,12 +7,20 @@ require_once __DIR__ . '/vendor/autoload.php';
 $reflectionClass = new ReflectionClass(ClasseExemplo::class);
 
 $propriedadePrivada = $reflectionClass->getProperty('propriedadePrivada');
+
+if (!$propriedadePrivada->isPublic()) {
+    $propriedadePrivada->setAccessible(true);
+}
+
 var_dump($propriedadePrivada->getValue($reflectionClass->newInstanceWithoutConstructor()));
 
 // ----- Métodos ---------
-/*
- $reflectionMethod = $reflectionClass->getMethod('metodoPublico');
- $parameters = array_filter(
+
+$reflectionMethod = $reflectionClass->getMethod('metodoProtegido');
+$reflectionMethod->setAccessible(true);
+var_dump($reflectionMethod->invoke($reflectionClass->newInstanceWithoutConstructor()));
+
+/* $parameters = array_filter(
     $reflectionMethod->getParameters(),
     fn (ReflectionParameter $parameter) => !$parameter->isOptional()
 );
