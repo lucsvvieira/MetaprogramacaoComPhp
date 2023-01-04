@@ -6,7 +6,8 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 $reflectionClass = new ReflectionClass(ClasseExemplo::class);
 
-var_dump($reflectionClass->getProperties());
+$propriedadePrivada = $reflectionClass->getProperty('propriedadePrivada');
+var_dump($propriedadePrivada->getValue($reflectionClass->newInstanceWithoutConstructor()));
 
 // ----- Métodos ---------
 /*
