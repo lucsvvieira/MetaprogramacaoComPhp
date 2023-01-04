@@ -5,6 +5,9 @@ use Alura\Reflection\ClasseExemplo;
 require_once 'vendor\autoload.php';
 
 $reflectionClass = new ReflectionClass(ClasseExemplo::class);
-$propriedade = $reflectionClass->getProperty('propriedadePublica');
-
-var_dump($propriedade->getAttributes()[0]->getName());
+try {
+    $propriedade = $reflectionClass->getProperty('propriedadePublic');
+    var_dump($propriedade->getAttributes()[0]->getName());
+} catch (ReflectionException $e) {
+    echo $e->getMessage();
+}
